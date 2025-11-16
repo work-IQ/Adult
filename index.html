@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XhaMaster — Mobile UI</title>
+  <style>
+    /* MOBILE-FIRST PREMIUM FIRE NEON THEME */
+    :root{
+      --bg1:#0b0b0c;
+      --bg2:#120012;
+      --accent1:#ff0044; /* hot pink */
+      --accent2:#ff8a00; /* orange */
+      --glass: rgba(255,255,255,0.03);
+      --card:#161616;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial;
+      background: radial-gradient(circle at 20% 10%, rgba(255,0,100,0.06), transparent 15%),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }/* FORCE MOBILE-LIKE LAYOUT ON LARGER SCREENS */
+.wrap{max-width:420px;margin:0 auto;min-height:100vh;}
+
+header{
+  padding:14px 16px 8px;
+  display:flex;align-items:center;gap:10px;justify-content:center;
+}
+
+/* FIRE NEON LOGO (SVG + TEXT) */
+.logo-wrap{display:flex;align-items:center;gap:10px}
+.logo-svg{width:56px;height:56px;filter:drop-shadow(0 6px 18px rgba(255,80,0,0.45));}
+.brand{font-weight:900;font-size:18px;letter-spacing:1px;text-transform:uppercase;
+       background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;color:transparent}
+
+/* SEARCH BAR - GIF PULSE ANIMATION */
+.search-row{padding:0 16px 12px;}
+.search{
+  position:relative;display:flex;align-items:center;padding:8px;border-radius:12px;
+  background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.04);
+  overflow:hidden;
+}
+/* animated GIF overlay (using CSS animation to simulate subtle pulse) */
+.search:before{
+  content:'';position:absolute;inset:0;background-image: url('data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==');
+  opacity:0.06;mix-blend-mode:screen;animation:gifPulse 3s linear infinite;pointer-events:none;
+}
+@keyframes gifPulse{0%{opacity:0.03;transform:scale(1);}50%{opacity:0.12;transform:scale(1.02);}100%{opacity:0.03;transform:scale(1);} }
+.search input{flex:1;border:0;background:transparent;padding:8px 6px;color:#fff;font-size:15px;outline:none}
+.search button{background:linear-gradient(90deg,var(--accent1),var(--accent2));border:0;padding:8px 12px;border-radius:8px;color:#111;font-weight:800;margin-left:8px}
+
+/* SUBSCRIBE GIF BUTTON (multiple places) */
+.sub-btn{position:fixed;right:14px;top:14px;background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:10px 12px;border-radius:12px;border:2px solid rgba(255,255,255,0.12);font-weight:900;z-index:50;display:flex;align-items:center;gap:8px}
+.sub-gif{width:28px;height:28px;border-radius:6px;overflow:hidden;box-shadow:0 6px 18px rgba(255,60,0,0.25)}
+
+/* VIDEO GRID (single-column cards for mobile) */
+.video-section{padding:8px 12px 90px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px;margin-bottom:12px;padding:10px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+.thumb{width:100%;height:180px;object-fit:cover;border-radius:10px;display:block}
+.meta{display:flex;justify-content:space-between;align-items:center;padding-top:8px}
+.vtitle{font-size:15px;font-weight:800}
+.vmeta{font-size:12px;opacity:0.75}
+
+/* small subscribe inline */
+.inline-sub{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:6px 8px;border-radius:8px;font-weight:800}
+
+/* CATEGORY / FILTERS */
+.cats{display:flex;gap:8px;overflow:auto;padding:12px}
+.cat{flex:0 0 auto;padding:8px 12px;background:var(--glass);border-radius:999px;border:1px solid rgba(255,255,255,0.03);font-weight:700;font-size:13px}
+
+/* FOOTER */
+footer{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.8));backdrop-filter:blur(6px);padding:10px 12px;display:flex;justify-content:space-between;align-items:center}
+footer .fleft{font-size:13px;opacity:0.8}
+footer .fright{display:flex;gap:8px}
+.icon{width:36px;height:36px;border-radius:8px;background:linear-gradient(90deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;color:#111;font-weight:900}
+
+/* make sure everything is readable on old phones */
+@media(min-width:600px){.wrap{box-shadow:0 12px 40px rgba(0,0,0,0.6);border-radius:18px;margin-top:18px;}}
+
+  </style>
+</head>
+<body>
+  <div class="wrap"><!-- FIRE NEON LOGO + BRAND -->
+<header>
+  <div class="logo-wrap">
+    <!-- simple SVG flame neon -->
+    <svg class="logo-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0" x2="1">
+          <stop offset="0%" stop-color="#ff0044" />
+          <stop offset="100%" stop-color="#ff8a00" />
+        </linearGradient>
+      </defs>
+      <path d="M32 2C22 12 22 24 22 30c0 7 6 12 12 12s12-5 12-12C46 14 42 6 32 2z" fill="url(#g1)" opacity="0.98" />
+      <path d="M32 10c-3 3-4 7-2 12 2 6 8 8 8 8s4-6 2-12C38 14 36 12 32 10z" fill="#fff" opacity="0.04"/>
+    </svg>
+    <div>
+      <div class="brand">XhaMaster</div>
+      <div style="font-size:11px;opacity:0.7;margin-top:2px">Premium Mobile UI</div>
+    </div>
+  </div>
+</header>
+
+<!-- SEARCH -->
+<div class="search-row">
+  <div class="search">
+    <input id="q" placeholder="Search... (GIF animation active)" />
+    <button onclick="doSearch()">Search</button>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="cats" id="cats">
+  <div class="cat">Trending</div>
+  <div class="cat">New</div>
+  <div class="cat">Popular</div>
+  <div class="cat">HD</div>
+  <div class="cat">Shorts</div>
+</div>
+
+<!-- VIDEO LIST -->
+<div class="video-section" id="videos">
+
+  <!-- example card (repeatable) -->
+  <div class="card">
+    <img class="thumb" src="https://dummyimage.com/600x400/ff4d6e/ffffff&text=Thumb+1" alt="thumb" />
+    <div class="meta">
+      <div>
+        <div class="vtitle" id="t1">Sample Video Title 1</div>
+        <div class="vmeta">2.3M views • 3 days ago</div>
+      </div>
+      <div>
+        <button class="inline-sub" onclick="subscribeInline(this)">Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img class="thumb" src="https://dummyimage.com/600x400/ff8a00/ffffff&text=Thumb+2" alt="thumb" />
+    <div class="meta">
+      <div>
+        <div class="vtitle">Sample Video Title 2</div>
+        <div class="vmeta">1.1M views • 1 week ago</div>
+      </div>
+      <div>
+        <button class="inline-sub" onclick="subscribeInline(this)">Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img class="thumb" src="https://dummyimage.com/600x400/cc55ff/ffffff&text=Thumb+3" alt="thumb" />
+    <div class="meta">
+      <div>
+        <div class="vtitle">Sample Video Title 3</div>
+        <div class="vmeta">345K views • 2 months ago</div>
+      </div>
+      <div>
+        <button class="inline-sub" onclick="subscribeInline(this)">Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER (fixed) -->
+<footer>
+  <div class="fleft">© 2025 XhaMaster</div>
+  <div class="fright">
+    <div class="icon" onclick="openMenu()">M</div>
+    <div class="icon" onclick="openUpload()">U</div>
+  </div>
+</footer>
+
+<!-- MAIN SUBSCRIBE GIF BUTTON -->
+<div class="sub-btn" onclick="subscribe()" title="Subscribe">
+  <div class="sub-gif">
+    <!-- small animated gif (placeholder as base64 1px gif, user can replace) -->
+    <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwgAAACH5BAEAAAMALAAAAAAQABAAAAIgjI+py+0Po5y02ouz3rz7D4biSJbmmiabqyrbuC8fyrFQAOw==" style="width:100%;height:100%;object-fit:cover" alt="gif"/>
+  </div>
+  <div style="font-size:13px">Subscribe</div>
+</div>
+
+  </div>  <script>
+    // Simple search demo (filters cards by title)
+    function doSearch(){
+      var q=document.getElementById('q').value.toLowerCase();
+      var cards=document.querySelectorAll('.card');
+      cards.forEach(function(c){
+        var t=c.querySelector('.vtitle').innerText.toLowerCase();
+        c.style.display = t.indexOf(q)===-1 ? 'none' : 'block';
+      });
+    }
+
+    // Subscribe handling
+    function subscribe(){
+      try{localStorage.setItem('subscribed','yes');}
+      catch(e){}
+      toast('Subscribed — Notifications ON');
+    }
+    function subscribeInline(btn){
+      try{localStorage.setItem('subscribed','yes');}
+      catch(e){}
+      btn.innerText='Subscribed';btn.disabled=true;toast('Subscribed');
+    }
+
+    function toast(msg){
+      var d=document.createElement('div');
+      d.innerText=msg;d.style.position='fixed';d.style.left='50%';d.style.transform='translateX(-50%)';
+      d.style.bottom='86px';d.style.background='linear-gradient(90deg,var(--accent1),var(--accent2))';d.style.padding='8px 12px';
+      d.style.borderRadius='10px';d.style.fontWeight='800';d.style.zIndex=9999;document.body.appendChild(d);
+      setTimeout(function(){d.remove();},2200);
+    }
+
+    // placeholder functions
+    function openMenu(){alert('Menu — placeholder');}
+    function openUpload(){alert('Upload — placeholder');}
+
+    // Demo: notify subscribed users when "new video" event triggered (call sendNewVideoNotification())
+    function sendNewVideoNotification(){
+      if(localStorage.getItem('subscribed')==='yes'){
+        toast('New Video Uploaded — Check Home');
+      }
+    }
+  </script></body>
+</html>
