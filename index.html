@@ -109,7 +109,7 @@ footer .fright{display:flex;gap:8px}
 <!-- SEARCH -->
 <div class="search-row">
   <div class="search">
-    <input id="q" placeholder="Search... (GIF animation active)" />
+    <input id="q" placeholder="Search... ()" />
     <button onclick="doSearch()">Search</button>
   </div>
 </div>
@@ -227,5 +227,14 @@ footer .fright{display:flex;gap:8px}
         toast('New Video Uploaded — Check Home');
       }
     }
-  </script></body>
-</html>
+  </script><script>
+// Block site if offline
+if(!navigator.onLine){
+  document.body.innerHTML = `<div style='color:white;text-align:center;margin-top:40%;font-size:22px;'>❌ Internet Required<br><small>Please turn on data</small></div>`;
+}
+</script><script>
+if(!navigator.onLine){
+  document.body.innerHTML = `<div style='color:white;text-align:center;margin-top:40%;font-size:22px;'>❌ Internet Required<br><small>Please turn on data</small></div>`;
+}
+</script></body>
+  </html>
